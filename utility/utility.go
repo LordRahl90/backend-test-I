@@ -1,8 +1,14 @@
 package utility
 
 import (
+	"context"
+	"fmt"
+	"io/ioutil"
 	"log"
 	"strings"
+
+	"golang.org/x/oauth2/google"
+	spreadsheet "gopkg.in/Iwark/spreadsheet.v2"
 )
 
 //FailOnError function
@@ -24,7 +30,15 @@ func Split(r rune) bool {
 	return r == ',' || r == ' '
 }
 
-//GetTwitterClient - function to get the http twitter client
-func GetTwitterClient() {
+func getGoogleClient() {
+	data, err := ioutil.ReadFile("client_secret.json")
+	FailOnError(err, "Cannot Load the Service configuration file")
 
+	conf, err := google.JWTConfigFromJSON(data, spreadsheet.Scope)
+	FailOnError(err, "Cannot Load the proper configurations")
+
+	client := conf.Client(context.TODO())
+	service := spreadsheet.NewServiceWithClient(client)
+
+	fmt.Printf("%T", service)
 }

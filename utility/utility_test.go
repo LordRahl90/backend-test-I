@@ -13,3 +13,7 @@ func TestSplitString(t *testing.T) {
 		log.Fatal("Length of the string should be 5 actualt:", strLength)
 	}
 }
+
+func TestGetGoogleClient(t *testing.T) {
+	// result:=
+}
