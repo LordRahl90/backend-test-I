@@ -57,16 +57,21 @@ func FetchService(searchTerm string, accessConfig *dataobject.TwitterAccessConfi
 func WriteToSpreadSheet(input dataobject.SpreadSheetData) {
 	service := utility.GetGoogleClient()
 	spreadSheetID := utility.FetchSpreadSheetID()
-	// spreadSheetID := "1DTVRDDxTrgXIJSpcbvHbrJKkV1pbeh-T1qbAddzeWvM"
+
 	spreadsheet, err := service.FetchSpreadsheet(spreadSheetID)
 	utility.FailOnError(err, "We cannot fetch the specified spreadsheet")
 
+	//get the first sheet
 	sheet, err := spreadsheet.SheetByIndex(0)
 	utility.FailOnError(err, "Cannot Find the specified Sheet")
 
+	//Sets the headers of the spreadsheet
 	sheet.Update(0, 0, "Profile Name")
 	sheet.Update(0, 1, "Followers Count")
 
+	//Iterate through the rows to see if the first column is empty.
+	//if its empty, we keep the value in that row.
+	//This is buggy as many go-routines can try to access this point at the same time, thereby leading to overwritten records.
 	for r := range sheet.Rows {
 		if sheet.Rows[r][0].Value == "" {
 			sheet.Update(r, 0, input.ProfileName)
