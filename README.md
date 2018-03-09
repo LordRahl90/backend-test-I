@@ -39,3 +39,20 @@ We look forward to seeing what you can do. Remember, although it is a test, ther
 
 ## Demo
 ![screen shot](https://user-images.githubusercontent.com/8668661/33088863-330b4250-ceef-11e7-9e9c-b4fd9ca299d8.gif)
+
+
+##Implementation
+
+* run `cp config.example.json config.json`.
+* Populate `config.json` with values from your twitter app account.
+* run `cp client_secret.example.json client_secret.json`.
+* populate `client_secret.json` with the values from your service account.
+* Change The spreadsheet ID to the desired
+* run `go run main.go`
+
+## Update
+
+* Improve on the Spreadsheet Creation to make it accessible to the project owner
+* Make sure duplicate user information is not happening
+* Track the go-routines to prevent them from overwritting values in cells.
+* Find an easier and more scalable ways to retrieve the last row of the specified sheet

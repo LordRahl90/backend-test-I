@@ -56,9 +56,8 @@ func FetchService(searchTerm string, accessConfig *dataobject.TwitterAccessConfi
 //WriteToSpreadSheet - This writes the array values into the spreadsheet
 func WriteToSpreadSheet(input dataobject.SpreadSheetData) {
 	service := utility.GetGoogleClient()
-	// spreadSheetID := utility.FetchSpreadSheetID()
-	spreadSheetID := "1DTVRDDxTrgXIJSpcbvHbrJKkV1pbeh-T1qbAddzeWvM"
-
+	spreadSheetID := utility.FetchSpreadSheetID()
+	// spreadSheetID := "1DTVRDDxTrgXIJSpcbvHbrJKkV1pbeh-T1qbAddzeWvM"
 	spreadsheet, err := service.FetchSpreadsheet(spreadSheetID)
 	utility.FailOnError(err, "We cannot fetch the specified spreadsheet")
 
@@ -78,5 +77,5 @@ func WriteToSpreadSheet(input dataobject.SpreadSheetData) {
 
 	err = sheet.Synchronize()
 	utility.FailOnError(err, "Cannot Synchronize the spreadsheet")
-	// fmt.Println("Sheet Updated Successfully..")
+	fmt.Println("Sheet Updated Successfully..")
 }

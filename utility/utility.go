@@ -66,18 +66,22 @@ func ReadSpreadSheetConfiguration() (config *dataobject.SpreadSheetConfig) {
 
 	err = json.Unmarshal(data, &config)
 	FailOnError(err, "Invalid JSON Format Detected")
+
+	fmt.Println("Config file loaded successfully...")
 	return
 }
 
 //FetchSpreadSheetID - function to retrieve the spreadsheet ID
 func FetchSpreadSheetID() (spreadSheetID string) {
 	spreadsheetInfo := ReadSpreadSheetConfiguration()
-	spreadsheetID := spreadsheetInfo.SpreadSheetID
-	fmt.Println(spreadsheetID)
 
-	if spreadsheetID == "" {
+	spreadSheetID = spreadsheetInfo.SpreadSheetID
+
+	if spreadSheetID == "" {
 		fmt.Println("Creating New Spreadsheet")
 		spreadSheetID = CreateNewSpreadSheet()
+	} else {
+		fmt.Println("Spreadsheet ID exists")
 	}
 
 	return
