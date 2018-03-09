@@ -41,7 +41,7 @@ We look forward to seeing what you can do. Remember, although it is a test, ther
 ![screen shot](https://user-images.githubusercontent.com/8668661/33088863-330b4250-ceef-11e7-9e9c-b4fd9ca299d8.gif)
 
 
-##Implementation
+## Implementation
 
 * run `cp config.example.json config.json`.
 * Populate `config.json` with values from your twitter app account.

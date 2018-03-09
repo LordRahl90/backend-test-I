@@ -12,7 +12,7 @@ import (
 
 //FetchService - function to fetch The tweets
 func FetchService(searchTerm string, accessConfig *dataobject.TwitterAccessConfig) {
-	//TODO: Refactor this into an utility function
+	//TODO: Refactor the config process into an utility function
 	config := oauth1.NewConfig(accessConfig.ConsumerKey, accessConfig.ConsumerSecret)
 	token := oauth1.NewToken(accessConfig.AccessToken, accessConfig.AccessSecret)
 
