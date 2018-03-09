@@ -8,10 +8,15 @@ type TwitterAccessConfig struct {
 	AccessSecret   string `json:"accessSecret"`
 }
 
-//UserProfile Object
-type UserProfile struct {
+//SpreadSheetConfig - Spreadsheet configuration struct
+type SpreadSheetConfig struct {
+	SpreadSheetID string `json:"spreadsheetID"`
+}
+
+//SpreadSheetData Object
+type SpreadSheetData struct {
 	ProfileName string   `json:"profileName"`
 	Followers   int      `json:"noOfFollowers"`
-	Description int      `json:"userDescription"`
+	Description string   `json:"userDescription"`
 	HashTags    []string `json:"hasTags"`
 }
