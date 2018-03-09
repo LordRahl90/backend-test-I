@@ -39,6 +39,7 @@ func FetchService(searchTerm string, accessConfig *dataobject.TwitterAccessConfi
 		if followersCount >= 1000 && followersCount <= 50000 {
 			//we consider these users
 			fmt.Printf("Profile Name: %s\n Number of Followers: %d\n User description: %s\n HashTags: %s\n\n", profileName, followersCount, userDescription, hashTags)
+			fmt.Println("-----------------------------------------------------------------------------------------------------------")
 			//create an instance of the user
 			object := dataobject.SpreadSheetData{
 				ProfileName: profileName,
@@ -66,23 +67,16 @@ func WriteToSpreadSheet(input dataobject.SpreadSheetData) {
 
 	sheet.Update(0, 0, "Profile Name")
 	sheet.Update(0, 1, "Followers Count")
-	// sheet.Update(0, 2, "Profile Description")
-
-	// sheet.Update(1, 0, input.ProfileName)
-	// sheet.Update(1, 1, strconv.Itoa(input.Followers))
 
 	for r := range sheet.Rows {
 		if sheet.Rows[r][0].Value == "" {
 			sheet.Update(r, 0, input.ProfileName)
 			sheet.Update(r, 1, strconv.Itoa(input.Followers))
 			break
-		} else {
-			fmt.Println(sheet.Rows[1][0].Value)
 		}
 	}
 
 	err = sheet.Synchronize()
 	utility.FailOnError(err, "Cannot Synchronize the spreadsheet")
-
-	fmt.Println("Sheet Updated Successfully..")
+	// fmt.Println("Sheet Updated Successfully..")
 }

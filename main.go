@@ -44,5 +44,6 @@ func startUp() (searchTerms []string) {
 	input, _ = reader.ReadString('\n')
 
 	searchTerms = utility.SplitString(input)
+	fmt.Println("Filtering streams based on the following hashtags: ", searchTerms)
 	return
 }
